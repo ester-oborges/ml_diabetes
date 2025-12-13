@@ -37,5 +37,96 @@ Também foram observadas as seguintes características:
 
 ### --- TRATAMENTO DOS DADOS ---
 * **Tipos:** As variáveis Glucose, BloodPressure, SkinThickness, Insulin e BMI com valores mínimos iguais à zero devem ser convertidas para float, para que passem a aceitar valores NaN durante o tratamento. A variável Outcome será transformada em boolean e as demais serão reduzidas em precisão como sugerido durante a inspeção inicial.
-* **Valores impossíveis:** Considerando que foi analisado que o dataset não apresentou valores nulos a princípio, mas possui valores ausentes mascarados como zero, tais valores foram substituídos por NaN (valores nulos) durante o tratamento dos dados para não causar distorções.
-* **Outliers:** A análise de outliers pelo critério de 1.5 * IQR indicou baixa incidência de valores extremos na maioria das variáveis, com maior dispersão observada em Insulin e DiabetesPedigreeFunction, comportamento esperado dada a natureza dessas medidas.
+* **Valores impossíveis:** Considerando que foi analisado que o dataset não apresentou valores nulos a princípio, mas possui valores ausentes mascarados como zero, tais valores foram substituídos por NaN (valores nulos) durante o tratamento dos dados para imputar medianas (AAAAAAA  OU ESCOLHER A MELHOR ABORDAGEM NESSE CASO VERIFICAR DEPOIS AAAAAAAAAAAAAAAAAAA TAMBEM PODE SER IMPUTAÇAO CONDICIONADA POR OUTCOME).
+* **Outliers:** A análise de outliers pelo critério de 1.5 * IQR indicou baixa incidência de valores extremos na maioria das variáveis, com maior dispersão observada em Insulin e DiabetesPedigreeFunction, comportamento esperado dada a natureza dessas medidas. Em saúde, outliers podem ser casos clínicos reais.
+
+### --- ANÁLISE EXPLORATÓRIA DE DADOS (EDA) ---
+
+Objetivos:
+Entender distribuição
+Identificar padrões
+Avaliar relação com o target
+
+Análises esperadas:
+Histogramas por variável
+Boxplots por Outcome
+Correlação (heatmap)
+Comparação estatística entre grupos (opcional)
+
+Foco narrativo:
+Descrever padrões observados sem inferir casualidade.
+
+### --- PRÉ-PROCESSAMENTO ---
+Separação de dados
+```text
+x = df.drop('Outcome', axis=1)
+y = df['Outcome']
+```
+* `train_test_split`
+* Estratificação por Outcome
+
+### --- ESCALONAMENTO ---
+Essencial para modelos baseados em distância:
+* StandardScaler ou RobustScaler (usar pipeline para evitar data leakage).
+
+### --- MODELAGEM ---
+Modelos baseline:
+* Logistic Regression (obrigatório!)
+* KNN
+* Decision Tree
+
+Justificativa para README:
+"Modelos simples fornecem interpretabilidade e referência de desempenho."
+
+Modelos mais robustos:
+* Random Forest
+* Gradient Boosting
+* XGBoost / LightGBM (opcional)
+
+### --- AVALIAÇÃO DOS MODELOS ---
+Métricas principais:
+* Confusion Matrix
+* Recall (classe positiva)
+* Precision
+* F1-score
+* ROC-AUC
+
+Análises importantes:
+* Comparar desempenho vs. teste
+* Avaliar overfitting
+* Ajustar threeshold de decisão (opcional)
+
+### --- OTIMIZAÇÃO ---
+* GridSearchCV ou RandomizedSearchCV
+* Foco em Recall e F1-score
+
+Evitar over-otimização: explicar limites do dataset (tamanho pequeno).
+
+### --- INTERPRETABILIDADE ---
+Essencial em projetos de saúde.
+
+Abordagens:
+* Coeficientes (Logistic Regression)
+* Feature Importance (árvores)
+* SHAP (se quiser elevar o nível do projeto)
+
+### --- VALIDAÇÃO E LIMITAÇÕES ---
+Seção obrigatória para recrutadores.
+
+Pontos a destacar:
+* Dataset restrito a um grupo populacional.
+* Tamanho limitado da amostra.
+* Modelo não substitui diagnóstico médico.
+* Necessidade de validação externa.
+
+### --- CONCLUSÃO ---
+Responder claramente:
+* O modelo funciona?
+* Em quais cenários seria útil?
+* Quais próximos passos?
+
+Próximos passos possíveis:
+* Mais dados
+* Validação cross-population
+* Integração com sistemas clínicos
+* Monitoraemtno em produção
