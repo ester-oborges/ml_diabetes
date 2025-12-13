@@ -8,34 +8,34 @@ Construir um modelo de Machine Learning capaz de prever se uma paciente tem diab
 
 --- INSPEÇÃO INICIAL --- <br>
 A partir de uma inspeção inicial dos dados (utilizando df.sample()), foi identificado que o dataset possui 9 colunas, descritas a seguir:
-* Pregnancies (gestações): quantidade de vezes que a paciente esteve grávida.
-* Glucose (glicose): concentração plasmática de glicose (mg/dL).
-* BloodPreassure (pressão arterial): pressão arterial diastólica (mmHg).
-* SkinThickness (espessura da pele): espessura da dobra da pele do tríceps (mm).
-* Insulin (insulina): nível sérico de insulina (mu U/ml).
+* Pregnancies (gestações): Quantidade de vezes que a paciente esteve grávida.
+* Glucose (glicose): Concentração plasmática de glicose (mg/dL).
+* BloodPreassure (pressão arterial): Pressão arterial diastólica (mmHg).
+* SkinThickness (espessura da pele): Espessura da dobra da pele do tríceps (mm).
+* Insulin (insulina): Nível sérico de insulina (mu U/ml).
 * (IMC): Índice de Massa Corporal (kg/m²).
-* DiabetesPedigreeFunction (função de herediariedade): função que avalia o risco genético de diabetes com base no histórico familiar.
-* Age (idade): idade das pacientes em anos.
-* Outcome (resultado): diagnóstico de diabetes (0 = não, 1 = sim).
+* DiabetesPedigreeFunction (função de herediariedade): Função que avalia o risco genético de diabetes com base no histórico familiar.
+* Age (idade): Idade das pacientes em anos.
+* Outcome (resultado): Diagnóstico de diabetes (0 = não, 1 = sim).
 
 Durante a inspeção inicial, também foram observadas as seguintes características:
-* **Tamanho do dataset:** possui 768 registros. Para problemas de ML supervisionado, este é considerado um dataset de pequeno a médio porte, adequado para estudos exploratórios, prototipagem de modelos e validação de técnicas de pré-processamento.
-* **Tipos dos dados:** as variáveis numéricas estão originalmente classificadas como int64 e float64. É possível reduzir esses tipos para versões de menor precisão sem perda relevante de informação. Além disso, a variável Outcome pode ser convertida para tipo boolean, otimizando o uso de memória e o desempenho computacional.
-* **Duplicatas:** através do código df.duplicated().sum() observou-se que não há registros duplicados nesse dataset.
-* **Valores nulos:** a princípio, não há valores nulos explícitos (df.info()).
-* **Valores iguais a zero:** foi identificado, por meio de (df == 0).sum(), que algumas colunas apresentam valores iguais a zero em contextos biologicamente impossíveis (por exemplo: glicose, pressão arterial, espessura da pele, insulina e IMC). Esses valores não representam medições reais, mas registros ausentes codificados como zero. Portanto, tais valores foram substituídos por NaN durante o tratamento dos dados para não causar distorções.
+* **Tamanho do dataset:** Possui 768 registros. Para problemas de ML supervisionado, este é considerado um dataset de pequeno a médio porte, adequado para estudos exploratórios, prototipagem de modelos e validação de técnicas de pré-processamento.
+* **Tipos dos dados:** As variáveis numéricas estão originalmente classificadas como int64 e float64. É possível reduzir esses tipos para versões de menor precisão sem perda relevante de informação. Além disso, a variável Outcome pode ser convertida para tipo boolean, otimizando o uso de memória e o desempenho computacional.
+* **Duplicatas:** Através do código df.duplicated().sum() observou-se que não há registros duplicados nesse dataset.
+* **Valores nulos:** A princípio, não há valores nulos explícitos (df.info()).
+* **Valores iguais a zero:** Foi identificado, por meio de (df == 0).sum(), que algumas colunas apresentam valores iguais a zero em contextos biologicamente impossíveis (por exemplo: glicose, pressão arterial, espessura da pele, insulina e IMC). Esses valores não representam medições reais, mas registros ausentes codificados como zero. Portanto, tais valores foram substituídos por NaN durante o tratamento dos dados para não causar distorções.
 
 (FALTA ANALISAR O DESCRIBE)
 
 --- ANÁLISE DE OUTLIERS --- <br>
 O dicionário retornado indica quantos registros em cada coluna estão fora do intervalo esperado (Q1 - 1.5 * IQR, Q3 + 1.5 * IQR).
-* Pregnancies (4): algumas mulheres podem ter tido muitas gestações, provavelmente são dados legítimos.
-* Glucose (5): podem haver algumas pacientes hiperglicêmicas, provavelmente são dados legítimos.
-* **BloodPressure (45): muitos outliers, merece inspeção manual mais profunda.**
-* SkinThickness (1): quase nenhuma ocorrência, provavelmente são dados legítimos.
-* Insulin (34): geralmente a insulina é uma variável de distribuição assimétrica, outliers são esperados e provavelmente são dados legítimos.
-* BMI (19): valores de IMC muito altos costumam ser genuínos, provavelmente são dados legítimos.
-* DiabetesPedigreeFunction (29): geralmente a Pedigree Function é uma variável de distribuição assimétrica, outliers são esperados e provavelmente são dados legítimos.
-* Age (9): algumas mulheres podem ter idades muito altas ou muito baixas, provavelmente são dados legítimos.
+* Pregnancies (4): Algumas mulheres podem ter tido muitas gestações, provavelmente são dados legítimos.
+* Glucose (5): Podem haver algumas pacientes hiperglicêmicas, provavelmente são dados legítimos.
+* **BloodPressure (45): Muitos outliers, merece inspeção manual mais profunda.**
+* SkinThickness (1): Quase nenhuma ocorrência, provavelmente são dados legítimos.
+* Insulin (34): Geralmente a insulina é uma variável de distribuição assimétrica, outliers são esperados e provavelmente são dados legítimos.
+* BMI (19): Valores de IMC muito altos costumam ser genuínos, provavelmente são dados legítimos.
+* DiabetesPedigreeFunction (29): Geralmente a Pedigree Function é uma variável de distribuição assimétrica, outliers são esperados e provavelmente são dados legítimos.
+* Age (9): Algumas mulheres podem ter idades muito altas ou muito baixas, provavelmente são dados legítimos.
 * Outcome (0): nenhum outlier, esperado pois é binária.
 
