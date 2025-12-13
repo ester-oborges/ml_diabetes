@@ -6,8 +6,8 @@ Diversas restrições foram impostas na seleção das instâncias a partir de um
 --- OBJETIVO --- <br>
 Construir um modelo de Machine Learning capaz de prever se uma paciente tem diabetes ou não, com base nas variáveis clínicas disponíveis.
 
---- INSPEÇÃO INICIAL --- <br>
-A partir de uma inspeção inicial dos dados (utilizando `df.sample()`), foi identificado que o dataset possui 9 colunas, descritas a seguir:
+--- VISÃO GERAL E INSPEÇÕES INICIAIS DO DATASET --- <br>
+Foram identificadas 9 colunas no dataset, descritas a seguir:
 * Pregnancies (gestações): Quantidade de vezes que a paciente esteve grávida.
 * Glucose (glicose): Concentração plasmática de glicose (mg/dL).
 * BloodPreassure (pressão arterial): Pressão arterial diastólica (mmHg).
@@ -18,14 +18,19 @@ A partir de uma inspeção inicial dos dados (utilizando `df.sample()`), foi ide
 * Age (idade): Idade das pacientes em anos.
 * Outcome (resultado): Diagnóstico de diabetes (0 = não, 1 = sim).
 
-Durante a inspeção inicial, também foram observadas as seguintes características:
+Também foram observadas as seguintes características:
 * **Tamanho do dataset (`df.info()`):** Possui 768 registros. Para problemas de ML supervisionado, este é considerado um dataset de pequeno a médio porte, adequado para estudos exploratórios, prototipagem de modelos e validação de técnicas de pré-processamento.
 * **Tipos dos dados (`df.info()`):** As variáveis numéricas estão originalmente classificadas como int64 e float64. É possível reduzir esses tipos para versões de menor precisão sem perda relevante de informação. Além disso, a variável Outcome pode ser convertida para tipo boolean, otimizando o uso de memória e o desempenho computacional.
-* **Valores nulos (`df.info()`):** A princípio, não há valores nulos explícitos.
-* **Describe?? (`df.describe()`):** blablablá
-* **Duplicatas (`df.duplicated().sum()`):** Não há registros duplicados nesse dataset.
-* **Valores iguais a zero (`(df == 0).sum()`):** Foi identificado que algumas colunas apresentam valores iguais a zero em contextos biologicamente impossíveis (por exemplo: glicose, pressão arterial, espessura da pele, insulina e IMC). Esses valores não representam medições reais, mas registros ausentes codificados como zero. Portanto, tais valores foram substituídos por NaN (valores nulos) durante o tratamento dos dados para não causar distorções.
-* **Valores negativos (`(df < 0).sum()`):** Não foram detectados valores negativos (que também seriam considerados impossíveis considerando as variáveis desse dataset em específico).
+* **Valores nulos (`df.info()`):** Não há valores nulos.
+* **Duplicatas (`df.duplicated().sum()`):** Não há registros duplicados.
+* **Resumo estatístico (`df.describe()`):** Foram detectados zeros fisiologicamente impossíveis nas variáveis Glucose, BloodPressure, SkinThickness, Insulin e BMI com valores mínimos iguais à zero. Ou seja, **o dataset não apresentou valores nulos a princípio, mas possui valores ausentes mascarados como zero**. As demais distribuições nesse resumo estatístico parecem coerentes.
+
+
+
+
+
+
+
 
 --- ANÁLISE DE OUTLIERS --- <br>
 O dicionário retornado indica quantos registros em cada coluna estão fora do intervalo esperado (Q1 - 1.5 * IQR, Q3 + 1.5 * IQR).
@@ -38,4 +43,7 @@ O dicionário retornado indica quantos registros em cada coluna estão fora do i
 * DiabetesPedigreeFunction (29): Geralmente a Pedigree Function é uma variável de distribuição assimétrica, outliers são esperados e provavelmente são dados legítimos.
 * Age (9): Algumas mulheres podem ter idades muito altas ou muito baixas, provavelmente são dados legítimos.
 * Outcome (0): nenhum outlier, esperado pois é binária.
+
+--- TRATAMENTOS --- <br>
+* **Valores iguais a zero (`(df == 0).sum()`):** Foi identificado que algumas colunas apresentam valores iguais a zero em contextos biologicamente impossíveis. Esses valores não representam medições reais, mas registros ausentes codificados como zero. Portanto, tais valores foram substituídos por NaN (valores nulos) durante o tratamento dos dados para não causar distorções.
 
