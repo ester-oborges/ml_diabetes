@@ -21,11 +21,11 @@ A partir de uma inspeção inicial dos dados (utilizando `df.sample()`), foi ide
 Durante a inspeção inicial, também foram observadas as seguintes características:
 * **Tamanho do dataset (`df.info()`):** Possui 768 registros. Para problemas de ML supervisionado, este é considerado um dataset de pequeno a médio porte, adequado para estudos exploratórios, prototipagem de modelos e validação de técnicas de pré-processamento.
 * **Tipos dos dados (`df.info()`):** As variáveis numéricas estão originalmente classificadas como int64 e float64. É possível reduzir esses tipos para versões de menor precisão sem perda relevante de informação. Além disso, a variável Outcome pode ser convertida para tipo boolean, otimizando o uso de memória e o desempenho computacional.
-* **Duplicatas (`df.duplicated().sum()`):** Não há registros duplicados nesse dataset.
 * **Valores nulos (`df.info()`):** A princípio, não há valores nulos explícitos.
+* **Describe?? (`df.describe()`):** blablablá
+* **Duplicatas (`df.duplicated().sum()`):** Não há registros duplicados nesse dataset.
 * **Valores iguais a zero (`(df == 0).sum()`):** Foi identificado que algumas colunas apresentam valores iguais a zero em contextos biologicamente impossíveis (por exemplo: glicose, pressão arterial, espessura da pele, insulina e IMC). Esses valores não representam medições reais, mas registros ausentes codificados como zero. Portanto, tais valores foram substituídos por NaN (valores nulos) durante o tratamento dos dados para não causar distorções.
-
-(FALTA ANALISAR O DESCRIBE)
+* **Valores negativos (`(df < 0).sum()`):** Não foram detectados valores negativos (que também seriam considerados impossíveis considerando as variáveis desse dataset em específico).
 
 --- ANÁLISE DE OUTLIERS --- <br>
 O dicionário retornado indica quantos registros em cada coluna estão fora do intervalo esperado (Q1 - 1.5 * IQR, Q3 + 1.5 * IQR).
