@@ -23,4 +23,15 @@ Durante a inspeção inicial também foram observados os seguintes pontos:
 * A princípio, não há valores nulos (df.info()), porém foi observado que há registros de valores iguais a zero ((df == 0).sum()) em colunas como blablablabla, indicando valores impossíveis -- portanto, esses valores foram substituídos por NaN durante o tratamento dos dados, já que (INSERIR UMA JUSTIFICATIVA BLABLA).
 * O dataset possui 768 registros (df.info()), sendo este um dataset grande?pequeno?razoável? sei lá, chegar a alguma conclusão aqui.
 * Os tipos numéricos foram classificados em float64 e int64 (df.info()), mas podem ser reduzidos de 64 bits para versões menores e a variável Outcome pode ser convertida para boolean, preservando a precisão necessária ao dataset e otimizando o uso de memória e o desempenho do processamento.
-* 
+
+--- ANÁLISE DE OUTLIERS --- <br>
+O dicionário retornado indica quantos registros em cada coluna estão fora do intervalo esperado (Q1 - 1.5 * IQR, Q3 + 1.5 * IQR).
+* Pregnancies (4): algumas mulheres podem ter tido muitas gestações, provavelmente são dados legítimos.
+* Glucose (5): podem haver algumas pacientes hiperglicêmicas, provavelmente são dados legítimos.
+* **BloodPressure (45): muitos outliers, merece inspeção manual mais profunda.**
+* SkinThickness (1): quase nenhuma ocorrência, provavelmente são dados legítimos.
+* Insulin (34): geralmente a insulina é uma variável de distribuição assimétrica, outliers são esperados e provavelmente são dados legítimos.
+* BMI (19): valores de IMC muito altos costumam ser genuínos, provavelmente são dados legítimos.
+* DiabetesPedigreeFunction (29): geralmente a Pedigree Function é uma variável de distribuição assimétrica, outliers são esperados e provavelmente são dados legítimos.
+* Age (9): algumas mulheres podem ter idades muito altas ou muito baixas, provavelmente são dados legítimos.
+* Outcome (0): nenhum outlier, esperado pois é binária.
