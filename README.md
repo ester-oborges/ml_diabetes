@@ -3,7 +3,7 @@ Este conjunto de dados é originalmente do Instituto Nacional de Diabetes e Doen
 
 Diversas restrições foram impostas na seleção das instâncias a partir de um banco de dados maior. Em particular, **todas as pacientes são mulheres, com pelo menos 21 anos de idade, de ascendência indígena Pima**.
 
-Construir um modelo de Machine Learning capaz de prever se uma paciente tem diabetes ou não, com base nas variáveis clínicas disponíveis.
+O objetivo desse projeto é construir um modelo de Machine Learning capaz de prever se uma paciente tem diabetes ou não, com base nas variáveis clínicas disponíveis.
 
 # Visão geral e inspeções iniciais do dataset
 Foram identificadas 9 colunas no dataset, descritas a seguir:
