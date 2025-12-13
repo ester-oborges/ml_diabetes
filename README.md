@@ -41,16 +41,19 @@ Também foram observadas as seguintes características:
 * **Outliers:** A análise de outliers pelo critério de 1.5 * IQR indicou baixa incidência de valores extremos na maioria das variáveis, com maior dispersão observada em Insulin e DiabetesPedigreeFunction, comportamento esperado dada a natureza dessas medidas. Em saúde, outliers podem ser casos clínicos reais.
 
 ### --- ANÁLISE EXPLORATÓRIA DE DADOS (EDA) ---
+**Heatmap de correlação entre as variáveis**
+* Outcome → correlação positiva moderada com Glucose e BMI.
+* Age x Pregnancies → correlação positiva entre si.
+* Pouca correlação forte entre muitas variáveis.
 
-Objetivos:
-Entender distribuição
-Identificar padrões
-Avaliar relação com o target
+**Histogramas (Outcome)**
+* Glucose → Apresenta a separação mais clara entre os grupos, com valores mais elevados concentrados no grupo com diabetes.
+* BMI → Exibe leve deslocamento para valores mais altos no grupo com diabetes, apesar de sobreposição considerável.
+* Age → Mostra deslocamento para idades mais elevadas no grupo com diabetes, com sobreposição moderada entre as classes.
+* Insulin → Possui distribuição assimétrica, alta variabilidade e grande sobreposição entre as classes, sendo uma variável ruidosa isoladamente.
+* BloodPressure → Apresenta forte sobreposição entre os grupos, com distribuições semelhantes, indicando baixo poder discriminativo quando analisada isoladamente.
 
-Análises esperadas:
-Histogramas por variável
 Boxplots por Outcome
-Correlação (heatmap)
 Comparação estatística entre grupos (opcional)
 
 Foco narrativo:
