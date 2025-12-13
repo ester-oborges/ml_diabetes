@@ -23,21 +23,9 @@ Também foram observadas as seguintes características:
 * **Tipos dos dados (`df.info()`):** As variáveis numéricas estão originalmente classificadas como int64 e float64. É possível reduzir esses tipos para versões de menor precisão sem perda relevante de informação. Além disso, a variável Outcome pode ser convertida para tipo boolean, otimizando o uso de memória e o desempenho computacional.
 * **Valores nulos (`df.info()`):** Não há valores nulos.
 * **Duplicatas (`df.duplicated().sum()`):** Não há registros duplicados.
-* **Resumo estatístico (`df.describe()`):** Foram detectados zeros fisiologicamente impossíveis nas variáveis Glucose, BloodPressure, SkinThickness, Insulin e BMI com valores mínimos iguais à zero. Ou seja, **o dataset não apresentou valores nulos a princípio, mas possui valores ausentes mascarados como zero**. As demais distribuições nesse resumo estatístico parecem coerentes, mas pedem uma análise de outliers mais profunda.
-
---- ANÁLISE DE OUTLIERS POR COLUNA (1.5 * IQR) --- <br>
-O dicionário retornado nessa etapa do projeto indica quantos registros em cada coluna estão fora do intervalo esperado (Q1 - 1.5 * IQR, Q3 + 1.5 * IQR).
-* Pregnancies (4): Algumas mulheres podem ter tido muitas gestações, provavelmente são dados legítimos.
-* Glucose (5): Podem haver algumas pacientes hiperglicêmicas, provavelmente são dados legítimos.
-* **BloodPressure (45): Muitos outliers, merece inspeção manual mais profunda.**
-* SkinThickness (1): Quase nenhuma ocorrência, provavelmente são dados legítimos.
-* Insulin (34): Geralmente a insulina é uma variável de distribuição assimétrica, outliers são esperados e provavelmente são dados legítimos.
-* BMI (19): Valores de IMC muito altos costumam ser genuínos, provavelmente são dados legítimos.
-* DiabetesPedigreeFunction (29): Geralmente a Pedigree Function é uma variável de distribuição assimétrica, outliers são esperados e provavelmente são dados legítimos.
-* Age (9): Algumas mulheres podem ter idades muito altas ou muito baixas, provavelmente são dados legítimos.
-* Outcome (0): nenhum outlier, esperado pois é binária.
+* **Resumo estatístico (`df.describe()`):** Foram detectados zeros fisiologicamente impossíveis nas variáveis Glucose, BloodPressure, SkinThickness, Insulin e BMI com valores mínimos iguais à zero. Ou seja, **o dataset não apresentou valores nulos a princípio, mas possui valores ausentes mascarados como zero**. As demais distribuições nesse resumo estatístico parecem coerentes.
 
 --- TRATAMENTO DOS DADOS --- <br>
 * **Tipos:** As variáveis Glucose, BloodPressure, SkinThickness, Insulin e BMI com valores mínimos iguais à zero devem ser convertidas para float, para que passem a aceitar valores NaN durante o tratamento. A variável Outcome será transformada em boolean e as demais serão reduzidas em precisão como sugerido durante a inspeção inicial.
 * **Valores impossíveis:** Considerando que foi analisado que o dataset não apresentou valores nulos a princípio, mas possui valores ausentes mascarados como zero, tais valores foram substituídos por NaN (valores nulos) durante o tratamento dos dados para não causar distorções.
-* **Outliers:** 
+* **Outliers:** A análise de outliers pelo critério de 1.5 * IQR indicou baixa incidência de valores extremos na maioria das variáveis, com maior dispersão observada em Insulin e DiabetesPedigreeFunction, comportamento esperado dada a natureza dessas medidas.
