@@ -24,6 +24,8 @@ Durante a inspeção inicial também foram observados os seguintes pontos:
 * O dataset possui 768 registros (df.info()), sendo este um dataset grande?pequeno?razoável? sei lá, chegar a alguma conclusão aqui.
 * Os tipos numéricos foram classificados em float64 e int64 (df.info()), mas podem ser reduzidos de 64 bits para versões menores e a variável Outcome pode ser convertida para boolean, preservando a precisão necessária ao dataset e otimizando o uso de memória e o desempenho do processamento.
 
+(FALTA ANALISAR O DESCRIBE)
+
 --- ANÁLISE DE OUTLIERS --- <br>
 O dicionário retornado indica quantos registros em cada coluna estão fora do intervalo esperado (Q1 - 1.5 * IQR, Q3 + 1.5 * IQR).
 * Pregnancies (4): algumas mulheres podem ter tido muitas gestações, provavelmente são dados legítimos.
@@ -35,3 +37,4 @@ O dicionário retornado indica quantos registros em cada coluna estão fora do i
 * DiabetesPedigreeFunction (29): geralmente a Pedigree Function é uma variável de distribuição assimétrica, outliers são esperados e provavelmente são dados legítimos.
 * Age (9): algumas mulheres podem ter idades muito altas ou muito baixas, provavelmente são dados legítimos.
 * Outcome (0): nenhum outlier, esperado pois é binária.
+
