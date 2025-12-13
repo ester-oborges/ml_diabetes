@@ -39,8 +39,5 @@ O dicionário retornado nessa etapa do projeto indica quantos registros em cada 
 
 --- TRATAMENTO DOS DADOS --- <br>
 * **Tipos:** As variáveis Glucose, BloodPressure, SkinThickness, Insulin e BMI com valores mínimos iguais à zero devem ser convertidas para float, para que passem a aceitar valores NaN durante o tratamento. A variável Outcome será transformada em boolean e as demais serão reduzidas em precisão como sugerido durante a inspeção inicial.
-* **Valores impossíveis:**
+* **Valores impossíveis:** Considerando que foi analisado que o dataset não apresentou valores nulos a princípio, mas possui valores ausentes mascarados como zero, tais valores foram substituídos por NaN (valores nulos) durante o tratamento dos dados para não causar distorções.
 * **Outliers:** 
-
-* **Valores iguais a zero (`(df == 0).sum()`):** Foi identificado que algumas colunas apresentam valores iguais a zero em contextos biologicamente impossíveis. Esses valores não representam medições reais, mas registros ausentes codificados como zero. Portanto, tais valores foram substituídos por NaN (valores nulos) durante o tratamento dos dados para não causar distorções.
-
