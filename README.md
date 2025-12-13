@@ -22,6 +22,8 @@ Foram identificadas 9 colunas no dataset, descritas a seguir:
 * Age (idade): Idade das pacientes em anos.
 * Outcome (resultado): Diagnóstico de diabetes (0 = não, 1 = sim).
 
+<br>
+
 Também foram observadas as seguintes características:
 * **Tamanho do dataset (`df.info()`):** Possui 768 registros. Para problemas de ML supervisionado, este é considerado um dataset de pequeno a médio porte, adequado para estudos exploratórios, prototipagem de modelos e validação de técnicas de pré-processamento.
 * **Tipos dos dados (`df.info()`):** As variáveis numéricas estão originalmente classificadas como int64 e float64. É possível reduzir esses tipos para versões de menor precisão sem perda relevante de informação. Além disso, a variável Outcome pode ser convertida para tipo boolean, otimizando o uso de memória e o desempenho computacional.
