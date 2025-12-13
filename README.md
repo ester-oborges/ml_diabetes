@@ -8,3 +8,19 @@ Os conjuntos de dados consistem em várias variáveis preditoras médicas e uma 
 Construir um modelo Machine Learning para prever se os pacientes têm diabetes ou não.
 
 --- INSPEÇÃO INICIAL --- <br>
+Foi verificado (através de df.sample()) que a tabela possui 9 colunas, sendo elas:
+* Pregnancies (gestações): quantidade de vezes que a paciente esteve grávida.
+* Glucose (glicose): concentração plasmática de glicose (mg/dL).
+* BloodPreassure (pressão arterial): pressão arterial diastólica (mmHg).
+* SkinThickness (espessura da pele): espessura da dobra da pele do tríceps (mm).
+* Insulin (insulina): nível sérico de insulina (mu U/ml).
+* (IMC): Índice de Massa Corporal (kg/m²).
+* DiabetesPedigreeFunction (função de herediariedade): função que avalia o risco genético de diabetes com base no histórico familiar.
+* Age (idade): idade das pacientes em anos.
+* Outcome (resultado): indica diagnóstico de diabetes (0 = não, 1 = sim).
+
+Durante a inspeção inicial também foram observados os seguintes pontos:
+* A princípio, não há valores nulos (df.info()), porém foi observado que há registros de valores iguais a zero ((df == 0).sum()) em colunas como blablablabla, indicando valores impossíveis -- portanto, esses valores foram substituídos por NaN durante o tratamento dos dados, já que (INSERIR UMA JUSTIFICATIVA BLABLA).
+* O dataset possui 768 registros (df.info()), sendo este um dataset grande?pequeno?razoável? sei lá, chegar a alguma conclusão aqui.
+* Os tipos numéricos foram classificados em float64 e int64 (df.info()), mas podem ser reduzidos de 64 bits para versões menores e a variável Outcome pode ser convertida para boolean, preservando a precisão necessária ao dataset e otimizando o uso de memória e o desempenho do processamento.
+* 
