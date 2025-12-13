@@ -5,6 +5,15 @@ Diversas restrições foram impostas na seleção das instâncias a partir de um
 
 O objetivo desse projeto é construir um modelo de Machine Learning capaz de prever se uma paciente tem diabetes ou não, com base nas variáveis clínicas disponíveis.
 
+### --- ESTRUTURA DO REPOSITÓRIO ---
+
+```text
+├── diabetes.csv          # Conjunto de dados utilizado no projeto
+├── ml_diabetes.ipynb     # Notebook com análise, pré-processamento e modelagem
+├── README.md             # Documentação do projeto
+└── LICENSE               # Licença de uso do código
+```
+
 ### --- VISÃO GERAL E INSPEÇÕES INICIAIS DO DATASET ---
 Foram identificadas 9 colunas no dataset, descritas a seguir:
 * Pregnancies (gestações): Quantidade de vezes que a paciente esteve grávida.
