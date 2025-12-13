@@ -1,14 +1,13 @@
 --- CONTEXTO --- <br>
-Este conjunto de dados é originalmente do Instituto Nacional de Diabetes e Doenças Digestivas e Renais. O objetivo do conjunto de dados é prever diagnosticamente se um paciente tem diabetes ou não, com base em certas medições diagnósticas incluídas no conjunto de dações. Diversas restrições foram impostas à seleção dessas instâncias de um banco de dados maior. Em particular, todas as pacientes aqui são mulheres com pelo menos 21 anos de ascendência indígena Pima.
+Este conjunto de dados é originalmente do Instituto Nacional de Diabetes e Doenças Digestivas e Renais. Seu objetivo é prever, de forma diagnóstica, se uma paciente possui diabetes ou não, com base em determinadas medições clínicas.
 
---- CONTEÚDO --- <br>
-Os conjuntos de dados consistem em várias variáveis preditoras médicas e uma variável-alvo. As variáveis preditoras incluem o número de gestações que a paciente teve, seu IMC, nível de insulina, idade e assim por diante.
+Diversas restrições foram impostas na seleção das instâncias a partir de um banco de dados maior. Em particular, **todas as pacientes são mulheres, com pelo menos 21 anos de idade, de ascendência indígena Pima**.
 
 --- OBJETIVO --- <br>
-Construir um modelo Machine Learning para prever se os pacientes têm diabetes ou não.
+Construir um modelo de Machine Learning capaz de prever se uma paciente tem diabetes ou não, com base nas variáveis clínicas disponíveis.
 
 --- INSPEÇÃO INICIAL --- <br>
-Foi verificado (através de df.sample()) que a tabela possui 9 colunas, sendo elas:
+A partir de uma inspeção inicial dos dados (utilizando df.sample()), foi identificado que o dataset possui 9 colunas, descritas a seguir:
 * Pregnancies (gestações): quantidade de vezes que a paciente esteve grávida.
 * Glucose (glicose): concentração plasmática de glicose (mg/dL).
 * BloodPreassure (pressão arterial): pressão arterial diastólica (mmHg).
@@ -17,12 +16,14 @@ Foi verificado (através de df.sample()) que a tabela possui 9 colunas, sendo el
 * (IMC): Índice de Massa Corporal (kg/m²).
 * DiabetesPedigreeFunction (função de herediariedade): função que avalia o risco genético de diabetes com base no histórico familiar.
 * Age (idade): idade das pacientes em anos.
-* Outcome (resultado): indica diagnóstico de diabetes (0 = não, 1 = sim).
+* Outcome (resultado): diagnóstico de diabetes (0 = não, 1 = sim).
 
-Durante a inspeção inicial também foram observados os seguintes pontos:
-* A princípio, não há valores nulos (df.info()), porém foi observado que há registros de valores iguais a zero ((df == 0).sum()) em colunas como blablablabla, indicando valores impossíveis -- portanto, esses valores foram substituídos por NaN durante o tratamento dos dados, já que (INSERIR UMA JUSTIFICATIVA BLABLA).
-* O dataset possui 768 registros (df.info()), sendo este um dataset grande?pequeno?razoável? sei lá, chegar a alguma conclusão aqui.
-* Os tipos numéricos foram classificados em float64 e int64 (df.info()), mas podem ser reduzidos de 64 bits para versões menores e a variável Outcome pode ser convertida para boolean, preservando a precisão necessária ao dataset e otimizando o uso de memória e o desempenho do processamento.
+Durante a inspeção inicial, também foram observadas as seguintes características:
+* **Tamanho do dataset:** possui 768 registros. Para problemas de ML supervisionado, este é considerado um dataset de pequeno a médio porte, adequado para estudos exploratórios, prototipagem de modelos e validação de técnicas de pré-processamento.
+* **Tipos dos dados:** as variáveis numéricas estão originalmente classificadas como int64 e float64. É possível reduzir esses tipos para versões de menor precisão sem perda relevante de informação. Além disso, a variável Outcome pode ser convertida para tipo boolean, otimizando o uso de memória e o desempenho computacional.
+* **Duplicatas:** através do código df.duplicated().sum() observou-se que não há registros duplicados nesse dataset.
+* **Valores nulos:** a princípio, não há valores nulos explícitos (df.info()).
+* **Valores iguais a zero:** foi identificado, por meio de (df == 0).sum(), que algumas colunas apresentam valores iguais a zero em contextos biologicamente impossíveis (por exemplo: glicose, pressão arterial, espessura da pele, insulina e IMC). Esses valores não representam medições reais, mas registros ausentes codificados como zero. Portanto, tais valores foram substituídos por NaN durante o tratamento dos dados para não causar distorções.
 
 (FALTA ANALISAR O DESCRIBE)
 
