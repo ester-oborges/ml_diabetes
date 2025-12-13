@@ -38,6 +38,15 @@ Também foram observadas as seguintes características:
 ### --- TRATAMENTO DOS DADOS ---
 * **Tipos:** As variáveis Glucose, BloodPressure, SkinThickness, Insulin e BMI com valores mínimos iguais à zero devem ser convertidas para float, para que passem a aceitar valores NaN durante o tratamento. A variável Outcome será transformada em boolean e as demais serão reduzidas em precisão como sugerido durante a inspeção inicial.
 * **Valores impossíveis:** Considerando que foi analisado que o dataset não apresentou valores nulos a princípio, mas possui valores ausentes mascarados como zero, tais valores foram substituídos por NaN (valores nulos) durante o tratamento dos dados para imputar medianas (AAAAAAA  OU ESCOLHER A MELHOR ABORDAGEM NESSE CASO VERIFICAR DEPOIS AAAAAAAAAAAAAAAAAAA TAMBEM PODE SER IMPUTAÇAO CONDICIONADA POR OUTCOME).
+
+
+Considerando que foi analisado que o dataset não apresentou valores nulos explicitamente, mas possui valores ausentes mascarados como zero em algumas variáveis clínicas, tais valores foram substituídos por NaN (valores nulos) durante a etapa de pré-processamento dos dados.
+
+Em seguida, foi aplicada a imputação desses valores ausentes utilizando a mediana de cada variável. Essa estratégia foi escolhida por ser robusta à presença de outliers, característica observada no conjunto de dados, além de ser uma abordagem simples, estável e amplamente utilizada em datasets clínicos de tamanho reduzido.
+
+A imputação pela mediana permite preservar melhor a distribuição original das variáveis quando comparada à média, reduzindo o impacto de valores extremos e contribuindo para a estabilidade do modelo de machine learning.
+
+
 * **Outliers:** A análise de outliers pelo critério de 1.5 * IQR indicou baixa incidência de valores extremos na maioria das variáveis, com maior dispersão observada em Insulin e DiabetesPedigreeFunction, comportamento esperado dada a natureza dessas medidas. Em saúde, outliers podem ser casos clínicos reais.
 
 ### --- ANÁLISE EXPLORATÓRIA DE DADOS (EDA) ---
