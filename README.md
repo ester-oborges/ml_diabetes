@@ -5,7 +5,7 @@ Diversas restrições foram impostas na seleção das instâncias a partir de um
 
 O objetivo desse projeto é construir um modelo de Machine Learning capaz de prever se uma paciente tem diabetes ou não, com base nas variáveis clínicas disponíveis.
 
-Neste contexto de saúde, onde a minimizaçāo de falsos negativos (Recall) é crítica (pois errar um diagnóstico positivo é mais grave) as métricas de sucesso desde o início devem incluir o **Recall, o AUC-ROC e o F1-score** para garantir a performance e robustez do modelo.
+Neste contexto de saúde, onde a minimizaçāo de falsos negativos (Recall) é crítica — pois errar um diagnóstico positivo é mais grave — as métricas de sucesso desde o início devem incluir o **Recall, o AUC-ROC e o F1-score** para garantir a performance e robustez do modelo.
 
 ### --- ESTRUTURA DO REPOSITÓRIO ---
 
