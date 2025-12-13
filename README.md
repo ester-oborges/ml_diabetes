@@ -1,12 +1,12 @@
-### CONTEXTO
+### Contexto
 Este conjunto de dados é originalmente do Instituto Nacional de Diabetes e Doenças Digestivas e Renais. Seu objetivo é prever, de forma diagnóstica, se uma paciente possui diabetes ou não, com base em determinadas medições clínicas.
 
 Diversas restrições foram impostas na seleção das instâncias a partir de um banco de dados maior. Em particular, **todas as pacientes são mulheres, com pelo menos 21 anos de idade, de ascendência indígena Pima**.
 
-### OBJETIVO
+### Objetivo
 Construir um modelo de Machine Learning capaz de prever se uma paciente tem diabetes ou não, com base nas variáveis clínicas disponíveis.
 
-### VISÃO GERAL E INSPEÇÕES INICIAIS DO DATASET --- <br>
+### Visão geral e inspeções iniciais do dataset
 Foram identificadas 9 colunas no dataset, descritas a seguir:
 * Pregnancies (gestações): Quantidade de vezes que a paciente esteve grávida.
 * Glucose (glicose): Concentração plasmática de glicose (mg/dL).
@@ -25,7 +25,7 @@ Também foram observadas as seguintes características:
 * **Duplicatas (`df.duplicated().sum()`):** Não há registros duplicados.
 * **Resumo estatístico (`df.describe()`):** Foram detectados zeros fisiologicamente impossíveis nas variáveis Glucose, BloodPressure, SkinThickness, Insulin e BMI com valores mínimos iguais à zero. Ou seja, **o dataset não apresentou valores nulos a princípio, mas possui valores ausentes mascarados como zero**. As demais distribuições nesse resumo estatístico parecem coerentes.
 
-### TRATAMENTO DOS DADOS
+### Tratamento dos dados
 * **Tipos:** As variáveis Glucose, BloodPressure, SkinThickness, Insulin e BMI com valores mínimos iguais à zero devem ser convertidas para float, para que passem a aceitar valores NaN durante o tratamento. A variável Outcome será transformada em boolean e as demais serão reduzidas em precisão como sugerido durante a inspeção inicial.
 * **Valores impossíveis:** Considerando que foi analisado que o dataset não apresentou valores nulos a princípio, mas possui valores ausentes mascarados como zero, tais valores foram substituídos por NaN (valores nulos) durante o tratamento dos dados para não causar distorções.
 * **Outliers:** A análise de outliers pelo critério de 1.5 * IQR indicou baixa incidência de valores extremos na maioria das variáveis, com maior dispersão observada em Insulin e DiabetesPedigreeFunction, comportamento esperado dada a natureza dessas medidas.
