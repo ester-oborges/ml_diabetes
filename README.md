@@ -46,7 +46,7 @@ Também foram observadas as seguintes características:
 * Age x Pregnancies → Observa-se correlação positiva entre as duas variáveis, comportamento esperado do ponto de vista demográfico.
 * Visão geral → A maioria das variáveis apresenta correlações fracas entre si, sugerindo baixa multicolinearidade e indicando que o modelo deverá capturar padrões principalmente por combinações não lineares.
 
-**Histogramas (Outcome)** REVISAR ESSAS ANÁLISES
+**Histogramas (Outcome)**
 * Glucose → Apresenta a separação mais evidente entre os grupos, com maior concentração de valores elevados no grupo com diabetes, indicando forte capacidade de distinção já na análise univariada.
 * BMI → Exibe leve deslocamento da distribuição para valores mais altos no grupo com diabetes, embora com sobreposição considerável entre as classes, sugerindo influência moderada no diagnóstico.
 * Age → Mostra deslocamento da distribuição para idades mais elevadas no grupo com diabetes, com sobreposição moderada, indicando que a variável contribui para o risco, mas não separa claramente os grupos isoladamente.
