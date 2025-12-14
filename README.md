@@ -10,10 +10,10 @@ Neste contexto de saúde, onde a minimizaçāo de falsos negativos (Recall) é c
 ### --- ESTRUTURA DO REPOSITÓRIO ---
 
 ```text
-├── diabetes.csv          # Conjunto de dados utilizado no projeto
-├── ml_diabetes.ipynb     # Notebook com análise, pré-processamento e modelagem
-├── README.md             # Documentação do projeto
-└── LICENSE               # Licença de uso do código
+├── diabetes.csv        # Conjunto de dados utilizado no projeto
+├── ml_diabetes.ipynb   # Notebook com análise, pré-processamento e modelagem
+├── README.md           # Documentação do projeto
+└── LICENSE             # Licença de uso do código
 ```
 
 ### --- VISÃO GERAL E INSPEÇÕES INICIAIS DO DATASET ---
