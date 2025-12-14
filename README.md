@@ -62,19 +62,38 @@ Também foram observadas as seguintes características:
 
 ### --- PRÉ-PROCESSAMENTO ---
 
-Threshold padrão (0.5)
+THRESHOLD PADRÃO (0.5)
 * Recall 70% → o modelo ainda deixa passar ~30% dos diabéticos (alto para contexto clínico).
 * AUC 0.81 → excelente capacidade discriminativa para um modelo linear simples.
 * F1 0.65 → bom equilíbrio, mas não é a métrica prioritária aqui.
 
 O modelo sabe separar, mas o threshold padrão não é adequado ao custo clínico.
 
-Threshold ajustado (~0.3)
+THRESHOLD AJUSTADO (~0.3)
 * Recall ~89% → você reduz drasticamente falsos negativos.
 * F1 aumentou, não caiu → ótimo sinal.
 * Você provavelmente aceitou mais falsos positivos (esperado).
 
 Isso é EXATAMENTE o comportamento desejado em saúde.
+
+MATRIZ DE CONFUSÃO
+
+|  | Predito Não | Predito Sim |
+| --- | --- | --- |
+| Real Não | TN = 60 | FP = 40 |
+| Real Sim | FN = 6 | TP = 48 |
+* Apenas 6 falsos negativos
+* Recall = 48 / (48 + 6) ≈ 0.89
+
+Resultado excelente do ponto de vista clínico.
+
+* 40 pacientes sem diabetes seriam sinalizadas como risco
+* Em contexto clínico: exames adicionais, monitoramento, mudança de estilo de vida.
+
+Custo aceitável frente ao risco de perder um diagnóstico real.
+
+O modelo privilegia sensibilidade (Recall) de forma consciente, reduzindo drasticamente falsos negativos ao custo de mais falsos positivos — comportamento desejável em triagem clínica.
+
 
 
 
