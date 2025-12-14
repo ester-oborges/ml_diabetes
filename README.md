@@ -42,23 +42,23 @@ Também foram observadas as seguintes características:
 
 ### --- ANÁLISE EXPLORATÓRIA DE DADOS (EDA) ---
 **Heatmap de correlação entre as variáveis**
-* Outcome → correlação positiva moderada com Glucose e BMI.
-* Age x Pregnancies → correlação positiva entre si.
-* Pouca correlação forte entre muitas variáveis.
+* Outcome → Apresenta correlação positiva moderada com Glucose e BMI, indicando relação direta entre níveis glicêmicos, índice de massa corporal e o diagnóstico de diabetes.
+* Age x Pregnancies → Observa-se correlação positiva entre as duas variáveis, comportamento esperado do ponto de vista demográfico.
+* Visão geral → A maioria das variáveis apresenta correlações fracas entre si, sugerindo baixa multicolinearidade e indicando que o modelo deverá capturar padrões principalmente por combinações não lineares.
 
-**Histogramas (Outcome)**
-* Glucose → Apresenta a separação mais clara entre os grupos, com valores mais elevados concentrados no grupo com diabetes.
-* BMI → Exibe leve deslocamento para valores mais altos no grupo com diabetes, apesar de sobreposição considerável.
-* Age → Mostra deslocamento para idades mais elevadas no grupo com diabetes, com sobreposição moderada entre as classes.
-* Insulin → A análise por histogramas evidenciou uma distribuição fortemente assimétrica, com alta variabilidade e ampla sobreposição entre as classes, indicando que, isoladamente, a variável apresenta baixo poder discriminativo e tende a introduzir ruído quando utilizada sem tratamento em modelos preditivos.
-* BloodPressure → Apresenta forte sobreposição entre os grupos, com distribuições semelhantes, indicando baixo poder discriminativo quando analisada isoladamente.
+**Histogramas (Outcome)** REVISAR ESSAS ANÁLISES
+* Glucose → Apresenta a separação mais evidente entre os grupos, com maior concentração de valores elevados no grupo com diabetes, indicando forte capacidade de distinção já na análise univariada.
+* BMI → Exibe leve deslocamento da distribuição para valores mais altos no grupo com diabetes, embora com sobreposição considerável entre as classes, sugerindo influência moderada no diagnóstico.
+* Age → Mostra deslocamento da distribuição para idades mais elevadas no grupo com diabetes, com sobreposição moderada, indicando que a variável contribui para o risco, mas não separa claramente os grupos isoladamente.
+* Insulin → A análise por histogramas evidencia distribuição fortemente assimétrica, alta variabilidade e ampla sobreposição entre as classes, sugerindo baixo poder discriminativo isolado e potencial introdução de ruído sem tratamento prévio.
+* BloodPressure → Apresenta distribuições muito semelhantes entre os grupos, com forte sobreposição, indicando baixo poder discriminativo quando analisada de forma isolada.
 
 **Boxplots (Outcome)**
 * Glucose → Apresenta assimetria positiva em ambos os grupos, com maior variabilidade entre indivíduos com diabetes (AIQ mais alto) e boa separação entre as distribuições, indicando forte capacidade discriminativa. Em machine learning, é uma variável central e altamente preditiva, tanto isoladamente quanto em interação com outras variáveis metabólicas.
-* BMI → Mostra assimetria positiva e ampla sobreposição entre os grupos, com dispersão ligeiramente maior no grupo sem diabetes e outliers altos mais frequentes entre diabéticos. Para ML, tem baixo poder discriminativo isolado, mas ganha relevância quando combinada com variáveis como Glucose e Age para identificar perfis de risco.
-* Age → Exibe assimetria positiva, com concentração em idades mais jovens e distribuições semelhantes entre os grupos, resultando em fraca separação direta. Em modelos de ML, atua melhor como variável moderadora, ajudando a capturar padrões de risco quando associada a indicadores metabólicos.
-* Insulin → A inspeção via boxplots aprofundou essa leitura ao revelar assimetria positiva extrema, grande concentração de outliers elevados e dispersão central reduzida, especialmente entre indivíduos com diabetes. Esses padrões indicam a necessidade de pré-processamento — como transformações ou tratamento de valores extremos — para que a variável possa ser incorporada de forma adequada em modelos de machine learning, onde ainda pode contribuir com informação relevante após ajuste.
-* BloodPressure → Possui distribuição aproximadamente simétrica e variabilidade semelhante entre os grupos, com poucos outliers e baixa distinção entre diabéticos e não diabéticos. Em ML, tende a ter baixo poder preditivo isolado, sendo mais útil como variável complementar em conjunto com outros fatores clínicos.
+* BMI → Mostra assimetria positiva e ampla sobreposição entre os grupos, com dispersão ligeiramente maior no grupo sem diabetes e outliers altos mais frequentes entre diabéticos. Isoladamente possui baixo poder discriminativo, mas torna-se relevante em interações com variáveis como Glucose e Age para identificar perfis de risco.
+* Age → Exibe assimetria positiva, com concentração em idades menores e distribuições semelhantes entre os grupos, resultando em fraca separação direta. Em modelos de ML, atua melhor como variável moderadora ao contextualizar o risco metabólico ao longo do ciclo de vida.
+* Insulin → A inspeção via boxplots aprofunda a análise ao revelar assimetria positiva extrema, grande concentração de outliers elevados e dispersão central reduzida, especialmente entre indivíduos com diabetes. Esses padrões indicam a necessidade de pré-processamento — como transformações ou tratamento de valores extremos — para que a variável possa contribuir de forma adequada em modelos de machine learning.
+* BloodPressure → Possui distribuição aproximadamente simétrica, variabilidade semelhante entre os grupos e poucos outliers, resultando em baixa distinção entre diabéticos e não diabéticos. Em ML, tende a apresentar baixo poder preditivo isolado, sendo mais adequada como variável complementar.
 
 
 
