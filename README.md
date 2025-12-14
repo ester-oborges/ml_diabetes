@@ -60,22 +60,23 @@ Também foram observadas as seguintes características:
 * Insulin → A inspeção via boxplots aprofunda a análise ao revelar assimetria positiva extrema, grande concentração de outliers elevados e dispersão central reduzida, especialmente entre indivíduos com diabetes. Esses padrões indicam a necessidade de pré-processamento — como transformações ou tratamento de valores extremos — para que a variável possa contribuir de forma adequada em modelos de machine learning.
 * BloodPressure → Possui distribuição aproximadamente simétrica, variabilidade semelhante entre os grupos e poucos outliers, resultando em baixa distinção entre diabéticos e não diabéticos. Em ML, tende a apresentar baixo poder preditivo isolado, sendo mais adequada como variável complementar.
 
-
-
-
-
 ### --- PRÉ-PROCESSAMENTO ---
-Separação de dados
-```text
-x = df.drop('Outcome', axis=1)
-y = df['Outcome']
-```
-* `train_test_split`
-* Estratificação por Outcome
 
-### --- ESCALONAMENTO ---
-Essencial para modelos baseados em distância:
-* StandardScaler ou RobustScaler (usar pipeline para evitar data leakage).
+Threshold padrão (0.5)
+* Recall 70% → o modelo ainda deixa passar ~30% dos diabéticos (alto para contexto clínico).
+* AUC 0.81 → excelente capacidade discriminativa para um modelo linear simples.
+* F1 0.65 → bom equilíbrio, mas não é a métrica prioritária aqui.
+
+O modelo sabe separar, mas o threshold padrão não é adequado ao custo clínico.
+
+Threshold ajustado (~0.3)
+* Recall ~89% → você reduz drasticamente falsos negativos.
+* F1 aumentou, não caiu → ótimo sinal.
+* Você provavelmente aceitou mais falsos positivos (esperado).
+
+Isso é EXATAMENTE o comportamento desejado em saúde.
+
+
 
 ### --- MODELAGEM ---
 Modelos baseline:
