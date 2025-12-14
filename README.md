@@ -60,6 +60,40 @@ Também foram observadas as seguintes características:
 * Insulin → A inspeção via boxplots aprofunda a análise ao revelar assimetria positiva extrema, grande concentração de outliers elevados e dispersão central reduzida, especialmente entre indivíduos com diabetes. Esses padrões indicam a necessidade de pré-processamento — como transformações ou tratamento de valores extremos — para que a variável possa contribuir de forma adequada em modelos de machine learning.
 * BloodPressure → Possui distribuição aproximadamente simétrica, variabilidade semelhante entre os grupos e poucos outliers, resultando em baixa distinção entre diabéticos e não diabéticos. Em ML, tende a apresentar baixo poder preditivo isolado, sendo mais adequada como variável complementar.
 
+### --- DESEMPENHO: MODELO BASELINE (REGRESSÃO LOGÍSTICA COM FOCO EM RECALL) ---
+A Regressão Logística foi utilizada como modelo baseline por sua simplicidade, interpretabilidade e ampla adoção em problemas de classificação binária na área da saúde. O uso de `class_weight='balanced'` foi adotado para lidar com o desbalanceamento das classes e priorizar a minimização de falsos negativos, aspecto crítico em contextos clínicos. O escalonamento das variáveis foi aplicado devido à sensibilidade do modelo à escala dos dados, garantindo estabilidade numérica e melhor convergência. O parâmetro `max_iter=1000` assegura a convergência do algoritmo, enquanto `random_state=42` garante reprodutibilidade dos resultados.
+
+
+| Limiar | Recall | F1-score | Falsos Negativos | Falsos Positivos |
+| --- | --- | --- | --- | --- |
+| 0.5 (padrão) | 0.704 | 0.650 | alto | baixo |
+| 0.3 (ajustado) | 0.889 | 0.676 | baixo | maior |
+
+A redução do limiar de decisão resultou em diminuição significativa de falsos negativos, alinhando o comportamento do modelo ao objetivo clínico do projeto.
+
+
+
+
+
+### --- DESEMPENHO: MODELO NÃO LINEAR (RANDOM FOREST) ---
+O Random Forest foi escolhido como modelo não linear para capturar relações mais complexas e interações entre as variáveis clínicas, que não são plenamente modeladas por abordagens lineares. O ajuste de `class_weight='balanced'` mantém o foco na redução de falsos negativos, alinhado ao objetivo clínico do projeto. O parâmetro `min_samples_leaf=5` foi definido para reduzir overfitting e aumentar a capacidade de generalização do modelo, enquanto `n_estimators=300` proporciona maior estabilidade das previsões. O uso de `n_jobs=-1` otimiza o tempo de treinamento e `random_state=42` assegura reprodutibilidade.
+
+**Métricas (Limiar de 0.5)**
+* Recall: 0.6666666666666666
+* F1: 0.6486486486486487
+* AUC: 0.8161111111111111
+                       
+
+### --- CONCLUSÃO ---
+
+
+
+
+
+
+
+
+
 ### --- PRÉ-PROCESSAMENTO ---
 
 THRESHOLD PADRÃO (0.5)
