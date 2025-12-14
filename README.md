@@ -94,6 +94,20 @@ Custo aceitável frente ao risco de perder um diagnóstico real.
 
 O modelo privilegia sensibilidade (Recall) de forma consciente, reduzindo drasticamente falsos negativos ao custo de mais falsos positivos — comportamento desejável em triagem clínica.
 
+CURVA ROC (AUC = 0.81)
+* O modelo separa bem as classes
+* A curva se mantém claramente acima da diagonal
+* AUC > 0.8 → boa capacidade discriminativa
+
+Independentemente do threshold, o modelo tem boa habilidade em ranquear pacientes por risco de diabetes.
+
+CURVA PRECISION-RECALL (AP = 0.67)
+* Para Recall entre 0.8 e 0.9, a Precisão fica ~0.6. Ou seja: A cada 10 pacientes sinalizadas como diabéticas, ~6 realmente são. E isso é totalmente aceitável, especialmente se o exame confirmatório for barato (ex: glicemia).
+
+O modelo de regressão logística apresentou AUC-ROC de 0.81, indicando boa capacidade discriminativa. Ao ajustar o threshold de decisão para priorizar sensibilidade, o Recall atingiu aproximadamente 89%, reduzindo significativamente o número de falsos negativos (6 casos). Embora isso tenha aumentado o número de falsos positivos, tal trade-off é considerado aceitável em contextos de triagem clínica, onde o custo de um falso negativo é substancialmente maior do que o de um falso positivo.
+
+
+
 
 
 
