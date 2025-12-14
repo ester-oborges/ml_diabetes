@@ -60,9 +60,8 @@ Também foram observadas as seguintes características:
 * Insulin → A inspeção via boxplots aprofunda a análise ao revelar assimetria positiva extrema, grande concentração de outliers elevados e dispersão central reduzida, especialmente entre indivíduos com diabetes. Esses padrões indicam a necessidade de pré-processamento — como transformações ou tratamento de valores extremos — para que a variável possa contribuir de forma adequada em modelos de machine learning.
 * BloodPressure → Possui distribuição aproximadamente simétrica, variabilidade semelhante entre os grupos e poucos outliers, resultando em baixa distinção entre diabéticos e não diabéticos. Em ML, tende a apresentar baixo poder preditivo isolado, sendo mais adequada como variável complementar.
 
-### --- DESEMPENHO: MODELO BASELINE (REGRESSÃO LOGÍSTICA COM FOCO EM RECALL) ---
+### --- DESEMPENHO: MODELO BASELINE (REGRESSÃO LOGÍSTICA) ---
 A Regressão Logística foi utilizada como modelo baseline por sua simplicidade, interpretabilidade e ampla adoção em problemas de classificação binária na área da saúde. O uso de `class_weight='balanced'` foi adotado para lidar com o desbalanceamento das classes e priorizar a minimização de falsos negativos, aspecto crítico em contextos clínicos. O escalonamento das variáveis foi aplicado devido à sensibilidade do modelo à escala dos dados, garantindo estabilidade numérica e melhor convergência. O parâmetro `max_iter=1000` assegura a convergência do algoritmo, enquanto `random_state=42` garante reprodutibilidade dos resultados.
-
 
 | Limiar | Recall | F1-score | Falsos Negativos | Falsos Positivos |
 | --- | --- | --- | --- | --- |
