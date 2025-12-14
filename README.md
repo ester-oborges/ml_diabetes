@@ -74,6 +74,7 @@ A redução do limiar de decisão resultou em diminuição significativa de fals
 
 
 
+
 ### --- DESEMPENHO: MODELO NÃO LINEAR (RANDOM FOREST) ---
 O Random Forest foi escolhido como modelo não linear para capturar relações mais complexas e interações entre as variáveis clínicas, que não são plenamente modeladas por abordagens lineares. O ajuste de `class_weight='balanced'` mantém o foco na redução de falsos negativos, alinhado ao objetivo clínico do projeto. O parâmetro `min_samples_leaf=5` foi definido para reduzir overfitting e aumentar a capacidade de generalização do modelo, enquanto `n_estimators=300` proporciona maior estabilidade das previsões. O uso de `n_jobs=-1` otimiza o tempo de treinamento e `random_state=42` assegura reprodutibilidade.
 
