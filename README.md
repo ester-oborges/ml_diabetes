@@ -83,6 +83,9 @@ O Random Forest foi escolhido como modelo não linear para capturar relações m
 | 0.5 (padrão) | 0.667 | 0.649 | alto | baixo |
 | 0.3 (ajustado) | 0.870 | 0.671 | baixo | maior |
                        
+A redução do limiar de decisão no Random Forest resultou em aumento significativo do Recall, reduzindo falsos negativos — aspecto crítico em um contexto clínico. Observa-se um aumento esperado de falsos positivos, porém com melhora do F1-score, indicando um trade-off equilibrado entre sensibilidade e precisão.
+
+
 
 ### --- CONCLUSÃO ---
 
