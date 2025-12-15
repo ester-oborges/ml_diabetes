@@ -70,10 +70,8 @@ A Regressão Logística foi utilizada como modelo baseline por sua simplicidade,
 
 A redução do limiar de decisão resultou em diminuição significativa de falsos negativos, alinhando o comportamento do modelo ao objetivo clínico do projeto.
 
-
-
-
-
+**Matriz de confusão, curva ROC e Precisão-Recall**
+Os resultados indicam que o modelo apresenta boa capacidade discriminativa (AUC ≈ 0.81) e comportamento coerente com o objetivo clínico do projeto. A matriz de confusão evidencia alto Recall, com baixo número de falsos negativos, ao custo de um aumento controlado de falsos positivos. A curva Precision–Recall reforça o trade-off adotado, mostrando que a priorização da sensibilidade impacta a precisão, decisão justificada em um cenário onde a não detecção da doença é mais crítica do que alarmes falsos.
 
 ### --- DESEMPENHO: MODELO NÃO LINEAR (RANDOM FOREST) ---
 O Random Forest foi escolhido como modelo não linear para capturar relações mais complexas e interações entre as variáveis clínicas, que não são plenamente modeladas por abordagens lineares. O ajuste de `class_weight='balanced'` mantém o foco na redução de falsos negativos, alinhado ao objetivo clínico do projeto. O parâmetro `min_samples_leaf=5` foi definido para reduzir overfitting e aumentar a capacidade de generalização do modelo, enquanto `n_estimators=300` proporciona maior estabilidade das previsões. O uso de `n_jobs=-1` otimiza o tempo de treinamento e `random_state=42` assegura reprodutibilidade.
@@ -85,127 +83,19 @@ O Random Forest foi escolhido como modelo não linear para capturar relações m
                        
 A redução do limiar de decisão no Random Forest resultou em aumento significativo do Recall, reduzindo falsos negativos — aspecto crítico em um contexto clínico. Observa-se um aumento esperado de falsos positivos, porém com melhora do F1-score, indicando um trade-off equilibrado entre sensibilidade e precisão.
 
+**Matriz de confusão, curva ROC e Precisão-Recall**
+O Random Forest apresentou boa capacidade discriminativa (AUC = 0.82) e manteve baixo número de falsos negativos, característica essencial em um contexto clínico. O ajuste do limiar favorece o Recall, reduzindo o risco de não identificação de pacientes diabéticos, ainda que com aumento controlado de falsos positivos.
 
-
-### --- CONCLUSÃO ---
-
-
-
-
-
-
-
-
-
-### --- PRÉ-PROCESSAMENTO ---
-
-THRESHOLD PADRÃO (0.5)
-* Recall 70% → o modelo ainda deixa passar ~30% dos diabéticos (alto para contexto clínico).
-* AUC 0.81 → excelente capacidade discriminativa para um modelo linear simples.
-* F1 0.65 → bom equilíbrio, mas não é a métrica prioritária aqui.
-
-O modelo sabe separar, mas o threshold padrão não é adequado ao custo clínico.
-
-THRESHOLD AJUSTADO (~0.3)
-* Recall ~89% → você reduz drasticamente falsos negativos.
-* F1 aumentou, não caiu → ótimo sinal.
-* Você provavelmente aceitou mais falsos positivos (esperado).
-
-Isso é EXATAMENTE o comportamento desejado em saúde.
-
-MATRIZ DE CONFUSÃO
-
-|  | Predito Não | Predito Sim |
-| --- | --- | --- |
-| Real Não | TN = 60 | FP = 40 |
-| Real Sim | FN = 6 | TP = 48 |
-* Apenas 6 falsos negativos
-* Recall = 48 / (48 + 6) ≈ 0.89
-
-Resultado excelente do ponto de vista clínico.
-
-* 40 pacientes sem diabetes seriam sinalizadas como risco
-* Em contexto clínico: exames adicionais, monitoramento, mudança de estilo de vida.
-
-Custo aceitável frente ao risco de perder um diagnóstico real.
-
-O modelo privilegia sensibilidade (Recall) de forma consciente, reduzindo drasticamente falsos negativos ao custo de mais falsos positivos — comportamento desejável em triagem clínica.
-
-CURVA ROC (AUC = 0.81)
-* O modelo separa bem as classes
-* A curva se mantém claramente acima da diagonal
-* AUC > 0.8 → boa capacidade discriminativa
-
-Independentemente do threshold, o modelo tem boa habilidade em ranquear pacientes por risco de diabetes.
-
-CURVA PRECISION-RECALL (AP = 0.67)
-* Para Recall entre 0.8 e 0.9, a Precisão fica ~0.6. Ou seja: A cada 10 pacientes sinalizadas como diabéticas, ~6 realmente são. E isso é totalmente aceitável, especialmente se o exame confirmatório for barato (ex: glicemia).
-
-O modelo de regressão logística apresentou AUC-ROC de 0.81, indicando boa capacidade discriminativa. Ao ajustar o threshold de decisão para priorizar sensibilidade, o Recall atingiu aproximadamente 89%, reduzindo significativamente o número de falsos negativos (6 casos). Embora isso tenha aumentado o número de falsos positivos, tal trade-off é considerado aceitável em contextos de triagem clínica, onde o custo de um falso negativo é substancialmente maior do que o de um falso positivo.
-
-
-
-
-
-
-### --- MODELAGEM ---
-Modelos baseline:
-* Logistic Regression (obrigatório!)
-* KNN
-* Decision Tree
-
-Justificativa para README:
-"Modelos simples fornecem interpretabilidade e referência de desempenho."
-
-Modelos mais robustos:
-* Random Forest
-* Gradient Boosting
-* XGBoost / LightGBM (opcional)
-
-### --- AVALIAÇÃO DOS MODELOS ---
-Métricas principais:
-* Confusion Matrix
-* Recall (classe positiva)
-* Precision
-* F1-score
-* ROC-AUC
-
-Análises importantes:
-* Comparar desempenho vs. teste
-* Avaliar overfitting
-* Ajustar threeshold de decisão (opcional)
+### --- RISCO DE OVERFITTING ---
+O risco de overfitting foi avaliado por meio da comparação entre métricas de treino e teste, bem como pela estabilidade dos resultados em validação cruzada. O modelo apresentou desempenho consistente entre os conjuntos, indicando boa capacidade de generalização.
 
 ### --- OTIMIZAÇÃO ---
-* GridSearchCV ou RandomizedSearchCV
-* Foco em Recall e F1-score
-
-Evitar over-otimização: explicar limites do dataset (tamanho pequeno).
-
-### --- INTERPRETABILIDADE ---
-Essencial em projetos de saúde.
-
-Abordagens:
-* Coeficientes (Logistic Regression)
-* Feature Importance (árvores)
-* SHAP (se quiser elevar o nível do projeto)
+Não foi aplicado ajuste extensivo de hiperparâmetros via GridSearchCV ou RandomizedSearchCV, considerando o tamanho reduzido do dataset e o risco de overfitting. A abordagem adotada priorizou estabilidade, interpretabilidade e alinhamento clínico.
 
 ### --- VALIDAÇÃO E LIMITAÇÕES ---
-Seção obrigatória para recrutadores.
-
-Pontos a destacar:
-* Dataset restrito a um grupo populacional.
-* Tamanho limitado da amostra.
-* Modelo não substitui diagnóstico médico.
-* Necessidade de validação externa.
+Este projeto foi desenvolvido com um conjunto de dados restrito a um grupo populacional específico (mulheres adultas de ascendência indígena Pima), o que limita a generalização dos resultados. Além disso, o tamanho reduzido da amostra impõe restrições à complexidade dos modelos e aumenta o risco de overfitting. O modelo proposto não substitui diagnóstico médico, devendo ser interpretado como ferramenta de apoio à decisão. Para uso real, seria indispensável validação externa em outras populações e contextos clínicos.
 
 ### --- CONCLUSÃO ---
-Responder claramente:
-* O modelo funciona?
-* Em quais cenários seria útil?
-* Quais próximos passos?
+Os modelos avaliados apresentaram desempenho consistente, com destaque para o aumento significativo de Recall após o ajuste do limiar de decisão, alinhando o comportamento do classificador ao objetivo clínico de minimizar falsos negativos. Em cenários de triagem e apoio ao diagnóstico, o modelo pode auxiliar na identificação precoce de pacientes com maior risco de diabetes. Como próximos passos, destacam-se a ampliação do conjunto de dados, validações em diferentes populações, aprimoramento da interpretabilidade e, em um cenário aplicado, a integração e monitoramento contínuo do modelo em ambientes clínicos.
 
-Próximos passos possíveis:
-* Mais dados
-* Validação cross-population
-* Integração com sistemas clínicos
-* Monitoraemtno em produção
+Foram avaliados modelos lineares e não lineares. A Regressão Logística foi utilizada como baseline interpretável, enquanto o Random Forest permitiu capturar interações mais complexas entre variáveis clínicas. Ambos apresentaram desempenho competitivo após ajuste de limiar de decisão, sendo considerados suficientes para os objetivos do projeto. Testes com modelos adicionais poderiam ser realizados em trabalhos futuros, caso haja necessidade de ganhos marginais de performance.
