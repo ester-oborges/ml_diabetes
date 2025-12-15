@@ -66,6 +66,9 @@ O Random Forest foi avaliado para capturar **relações não lineares e interaç
 O ajuste do limiar novamente mostrou-se essencial para reduzir falsos negativos, com **melhora do F1-score**, indicando equilíbrio adequado entre sensibilidade e precisão.
 O modelo apresentou **AUC ≈ 0.82**, confirmando boa separação entre as classes.
 
+**Avaliação de importância das variáveis:**
+A análise de importância das variáveis no Random Forest indica que *Glucose*, *BMI* e *Age* são os principais fatores preditivos do modelo, em consonância com o conhecimento clínico sobre diabetes. As importâncias refletem contribuição preditiva global e não devem ser interpretadas como relações causais. Os resultados reforçam a coerência clínica do modelo e sua capacidade de capturar padrões relevantes nos dados.
+
 ### --- AVALIAÇÃO DE OVERFITTING ---
 O risco de overfitting foi avaliado por meio da comparação entre métricas de treino e teste e pela estabilidade dos resultados.
 
